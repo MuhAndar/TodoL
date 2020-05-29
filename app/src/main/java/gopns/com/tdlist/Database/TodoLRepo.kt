@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 //Penyimpanan
-class ToDoRepository(application: Application){
+class TodoLRepo(application: Application){
     private val todoDao: TodoLDao?
     private var todos: LiveData<List<TodoL>>? = null
 
