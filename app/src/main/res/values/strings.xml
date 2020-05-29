@@ -13,6 +13,7 @@
     <string name="reminder_text">Remind me 1 hour before due time</string>
     <string name="date_created">Date Created</string>
     <string name="sort_by">Sort</string>
+    <string name="search">Search</string>
 
     <string-array name="option_edit_delete">
         <item>Details</item>
