@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import gopns.com.tdlist.Model.TodoLAdaptor
+import gopns.com.tdlist.Util.AlarmReceiver
 import gopns.com.tdlist.Model.TodoLVM
 import gopns.com.tdlist.Util.Common
 import gopns.com.tdlist.Util.Dialog
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var todoViewModel: TodoLVM
     private lateinit var todoAdapter: TodoLAdaptor
+    private lateinit var alarmReceiver: AlarmReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             showInsertDialog()
         }
+        alarmReceiver = AlarmReceiver()
     }
 
     override fun onResume() {
@@ -147,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                 todoViewModel.insertTodo(todo)
 
                 if (remindMe) {
+                    alarmReceiver.setReminderAlarm(this, dueDate, time, "$title is due in 1 hour")
                 }
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
             }
@@ -224,6 +228,7 @@ class MainActivity : AppCompatActivity() {
                 todoViewModel.updateTodo(todo)
 
                 if (remindMe && prevDueTime != time) {
+                    alarmReceiver.setReminderAlarm(this, dueDate, time, "$title is due in 1 hour")
                 }
 
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
