@@ -9,7 +9,8 @@ import android.view.Window
 import gopns.com.tdlist.R
 import kotlinx.android.synthetic.main.dialog.*
 
-class Dialog(context: Context, private val title: String, private val formLayout: View, private val saveAction: () -> Unit): Dialog(context){
+class Dialog(context: Context, private val title: String, private val
+formLayout: View, private val saveAction: () -> Unit): Dialog(context){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -254,6 +254,32 @@ class MainActivity : AppCompatActivity() {
             }.create().show()
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_sort -> true
+            R.id.action_sort_date_created -> {
+                isSortByDateCreated = true
+                refreshData()
+                true
+            }
+            R.id.action_sort_due_date -> {
+                isSortByDateCreated = false
+                refreshData()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun setProgressbarVisibility(state: Boolean) {
         if (state) progressbar.visibility = View.VISIBLE
         else progressbar.visibility = View.INVISIBLE

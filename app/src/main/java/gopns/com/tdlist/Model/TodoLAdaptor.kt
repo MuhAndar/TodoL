@@ -57,6 +57,13 @@ class TodoLAdaptor(private val listener: (TodoL, Int) -> Unit): RecyclerView.Ada
             VIEW_TYPE_TODO -> {
                 val todoHolder = holder as TodoViewHolder
                 todoHolder.bindItem(todoList[position], listener)
+                val sortedList = todoList.sortedWith(
+                    if(MainActivity.isSortByDateCreated)
+                        compareBy({it.dateCreated}, {it.dateUpdated})
+                    else{
+                        compareBy({it.dueDate}, {it.dueTime})
+                    })
+                todoHolder.bindItem(sortedList[position], listener)
             }
         }
     }
